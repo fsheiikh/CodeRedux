@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type ="text/javascript">
+            $(document).ready(function (){
+                // this triggers the connection event in our server!
+                var socket = io.connect();
+                // we'll write all the socket stuff after the above line!
+                
+                $('button').click(function(e)
+                {   
+                    //e.preventDefault();
+                    socket.emit("button-clicked", {clicked: "yes"})
+                })
+
+                socket.on("serverSocket", function(data)
+                {   
+                    console.log(data)
+                    $("#counter").html(data.count)
+                })
+
+
+            })
+        </script>
+
+    </head>
+    <body>
+        <button>CLick Me</button>
+        <h1 id="counter"></h1>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <% for(i in animals) {%>
+           <h4>name:  <%= animals[i].name%> </h4>
+           <a href='animals/<%= animals[i]._id %>'>See Animal Page </a><hr>
+        <% } %>
+
+        
+    </body>
+</html>

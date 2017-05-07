@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type ="text/javascript"></script>
+        <script>
+            var socket = io.connect();
+            var name = prompt("what is your name")
+
+            $(document).ready(function()
+            {
+                socket.emit('new_user', {user: name})
+
+                $('button').click(function()
+                {
+                    var msg = $('#message').val()
+
+                    $('#message').val("") //empties out message box
+
+                    socket.emit('new_message', {user: name, message: msg})
+
+                    socket.on('update_messages', function(data)
+                    {   
+                        $("#chatroom").html("")
+
+                        console.log(data)
+                        for(var i = 0; i < data.messages.length; i++)
+                        {
+                            $("#chatroom").append("<h6>" + data.messages[i].user + " says: "
+                                                         + data.messages[i].message + "</h6><hr>")
+                        }
+                    })
+                })
+            })
+
+
+        </script>
+        <style>
+            #chatroom {border: 1px solid gray;
+                    border-radius: 10px;
+                    height: 500px;
+                    width: 700px;
+                    background-color: lightgray}
+            input {border-radius: 8px;
+                    margin: 10px;
+                    width: 500px;
+                    height: 50px;}
+        </style>
+    </head>
+
+    <body>
+        <h1>Group Chat</h1>
+        <div id="chatroom">
+
+        </div>
+        <input type="text" id="message">
+        <button>Send Message</button>
+    </body>
+</html>

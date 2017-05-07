@@ -1,0 +1,61 @@
+Create a database called 'my_first_db'. 
+     //use 02_testDB
+     //switched to db 02_testDB
+
+Create students collection. 
+    //db.createCollection("students")
+
+Each document you insert into this collection should have the following format: 
+({name: STRING, 
+    home_state: STRING, 
+    lucky_number: NUMBER, 
+    birthday: {month: NUMBER, day: NUMBER, year: NUMBER}}) 
+
+    //db.students.insert({name: "Steve Francis", home_state: "Maryland", lucky_number: 3, birthday: {month: 02, day: 21, year: 1977}})
+    
+Create 5 students with the appropriate info. 
+    //'' x 5
+Get all students. 
+    //db.students.find().pretty()
+
+Retrieve all students who are from California (San Jose Dojo) or Washington (Seattle Dojo). 
+    //db.students.find({home_state: "Florida"}).pretty()
+
+Get all students whose lucky number is: 
+    greater than 10
+        //db.students.find({lucky_number: {$gt: 10}}).pretty()
+
+    less than or equal to 10 
+        //db.students.find({lucky_number: {$lte: 10}}).pretty()
+
+    between 0 and 11 (inclusive)
+        //db.students.find({lucky_number: {$lte: 11, $gte: 0}}).pretty()
+
+ Add a field to each student collection called 'teams' that is an ARRAY.  
+ It should contain some entries: . 
+ Do this in ONE operation. 
+        //db.students.updateMany({}, {$set: {team: ["Houston"]}})
+
+ Add some unique team for each particular students into each of their interest arrays. 
+        //db.students.update({name: "Tracy McGrady"}, {$push: {team: "Orlando"}})
+
+ Add the team 'New York' into someone's team array. 
+        //db.students.update({name: "Steve Francis"}, {$push: {team: "New York"}})
+
+ Remove the 'New York' team you just added. 
+        //db.students.update({name: "Steve Francis"}, {$pull: {team: "New York"}})
+
+ Remove all students who are from Florida (or Washington). 
+        //db.students.remove({home_state: "Florida"})
+
+ Remove a user by name.  
+        
+ Remove a student whose lucky number is greater than 5 (JUST ONE)
+ 
+ Add a field to each student collection called 'number_of_belts' and set it to 0.
+ 
+ Increment this field by 1 for all students in Washington (Seattle Dojo).
+ 
+ Rename the 'number_of_belts' field to 'belts_earned'Remove the 'lucky_number' field.
+ 
+ Add a 'updated_on' field, and set the value as the current date.

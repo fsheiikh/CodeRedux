@@ -1,0 +1,36 @@
+<html>
+    <head>
+    </head>
+
+    <body>
+        
+        <div>
+            <form action="message" method="POST">
+                User: <input type="text" name="user"><br>
+                Message: <br><textarea name="message" id="" cols="60" rows="05"></textarea><br>
+                <button>Post Message</button>
+            </form>
+        </div>
+        <div>
+            <% posts.forEach(function(post) {%>
+            
+                <h4>user: <%= post.user %></h4>
+                <h6>message: <%= post.message %></h6><hr>
+                <form action="comment/<%= post._id%>" method="POST">
+                    User: <input type="text" name="user">
+                    Comment: <input type="text" name="comment">
+                    <button>Post Comment</button>
+                </form>
+
+
+                comments: 
+                <% post.comments.forEach(function(comment){ %>
+                    User: <%= comment.user %> <br>
+                    Comment: <%= comment.comment %><hr> 
+                <% }) %><hr><br><br><br>
+            <% }) %>
+        </div>
+    </body>    
+
+
+</html>

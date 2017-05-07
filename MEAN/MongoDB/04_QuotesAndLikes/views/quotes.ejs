@@ -1,0 +1,21 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h2>Quotes</h2><hr><hr>
+        <% quotes.forEach(function(data) { %>
+            <h3><%= data.user %> said: </h3>
+            <% data.quotes.forEach(function(quote){ %>
+               <h4> <%=quote.quote %></h4>
+               <h5> <%=quote.likes %></h5>
+
+               <form action="/like/<%= quote._id%>" method="post">
+                   <button>Like</button>
+               </form>
+
+            <%})%>
+            <hr>
+        <% })%>
+    </body>
+</html>

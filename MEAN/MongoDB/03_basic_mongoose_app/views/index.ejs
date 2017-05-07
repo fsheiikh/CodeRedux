@@ -1,0 +1,20 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h2>Mongoose Basic App</h2>
+        <form action="/user" method="post">
+            <input type="text" name="name">
+            <input type="number" name="age">
+            <button>Submit</button>
+        </form>
+
+        <div>
+            <% users.forEach(function(user) {%>
+                <h5><%= user.name %></h5>
+                <p><%= user.age %></p>
+            <%})%>
+        </div>
+    </body>
+</html>
